@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-        Pinkmap
+          <div id="nav-logo">Pinkmap</div>
           <nav>
             <a href="#" className="nav-item">Map</a>
             <a href="#" className="nav-item">Report</a>
