@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Form from './Form';
+import Map from './Map';
 
 class App extends Component {
   render() {
@@ -16,6 +17,8 @@ class App extends Component {
           </nav>
         </header>
         <main>
+
+          <Map />
 
           <Form />
 
