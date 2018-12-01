@@ -1,0 +1,14 @@
+#report-form-wrapper {
+  align-content: center;
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  grid-auto-rows: 3rem;
+}
+
+.report-form-label {
+  text-align: right;
+}
+
+.report-form-section {
+  grid-column: 1 / 3;
+}
