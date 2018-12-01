@@ -1,6 +1,7 @@
 const fs = require('fs');
 const _ = require('lodash');
-const stationJson = JSON.parse(fs.readFileSync('../json/seoul-stations.json', 'utf8'));
+const path = require('path');
+const stationJson = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'seoul-stations.json'), 'utf8'));
 
 console.log('Data size', stationJson.DATA.length);
 const filteredData = stationJson.DATA
@@ -18,11 +19,12 @@ console.log('Total stations english names:', [...(new Set(stationJson.DATA.map(d
 console.log('Total stations korean names:', [...(new Set(stationJson.DATA.map(d => d.station_nm)))].length);
 console.log('Total stations chinese names:', [...(new Set(stationJson.DATA.map(d => d.station_nm_han)))].length);
 
-const mappedData = noDupData.map(({station_nm_han, station_nm_eng, line_num}) => {
+const mappedData = noDupData.map(({station_nm_han, station_nm_eng, station_nm, line_num}) => {
 	return {
 		lineNum: line_num,
 		en: station_nm_eng,
-		kr: station_nm_han,
+		kr: station_nm,
+		cn: station_nm_han,
 	};
 });
 
@@ -34,4 +36,4 @@ Object.keys(groupedByLine).forEach((lineKey) => {
 
 const finishData = _.groupBy(mappedData, 'lineNum');
 
-fs.writeFileSync('../json/seoul-stations-reduced.json', JSON.stringify(finishData, null, '\t'), 'utf8');
+fs.writeFileSync(path.resolve(__dirname, 'seoul-stations-reduced.json'), JSON.stringify(finishData, null, '\t'), 'utf8');
